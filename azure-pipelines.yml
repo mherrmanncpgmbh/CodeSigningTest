@@ -29,3 +29,12 @@ steps:
   displayName: 'Running signed powershell'
   inputs:
     filePath: '.\TestScript.ps1'
+
+- task: PowerShell@2
+  displayName: 'GIT commit powershell signing changes'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git add \*.ps1
+      git commit -m 'Updating powershell signing'
+      git push
