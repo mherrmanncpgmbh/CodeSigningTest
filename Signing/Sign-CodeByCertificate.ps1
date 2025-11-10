@@ -1,25 +1,18 @@
 <#
 .SYNOPSIS  
-	Signs a specified powershell script by the first found "CodeSigningCert" from the certificate store.
+	Signs a specified powershell script by a specified PFX file.
     https://learn.microsoft.com/en-us/powershell/module/pki/export-pfxcertificate?view=windowsserver2025-ps
 .NOTES  
 	Author: someone@cpgmbh.de
-.EXAMPLE  
-    .\Sign-CodeByCertificate.ps1
-.PARAMETER CertStoreLocation
-	Specifies the certificate stores where the code signing certificate is going to get picked from for signing the powershell.
-.PARAMETER PowershellToSign
-	Specifies the location of the powershell which needs signing.
 #>
 
-$PfxPath = ".\cp_selfsigned_pfx.pfx"
+$PfxPath = ".\cp_selfsigned_pfx.pfx" | Resolve-Path
 $PfxPassword = "123"
-$PowershellToSign = "..\TestScript.ps1"
+$PowershellToSign = "..\TestScript.ps1" | Resolve-Path
 
-
-# Abort if powershell has not the expected file format
-if(!($PowershellToSign.EndsWith(".ps1"))) {
-    Write-Error "[$PowershellToSign] appears to be not a valid powershell file. Expected '.ps1' as file extension."
+# Abort if path to pfx does not actually exist
+if(!(Test-Path $PfxPath)) {
+    Write-Error "PFX file [$PfxPath] does not exist."
     Exit 1
 }
 
