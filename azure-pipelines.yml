@@ -10,7 +10,8 @@ pool:
   vmImage: windows-latest
 
 steps:
-
+- checkout: self
+  persistCredentials: true  # Required to reuse Git credentials
 - task: PowerShell@2
   displayName: 'Checking directory status'
   inputs:
@@ -35,6 +36,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git add \*.ps1
+      git config user.email 'atlas@cpgmbh.de'
+      git config user.name 'Azure DevOps Pipeline'
+      git add '**/*.ps1'
       git commit -m 'Updating powershell signing'
       git push
