@@ -37,6 +37,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      git fetch
       git branch
       git checkout main
       git config user.email 'noreply@cpgmbh.de'
