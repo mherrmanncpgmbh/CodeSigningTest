@@ -12,6 +12,7 @@ pool:
 steps:
 - checkout: self
   persistCredentials: true  # Required to reuse Git credentials
+  
 - task: PowerShell@2
   displayName: 'Checking directory status'
   inputs:
@@ -36,9 +37,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git config user.email 'atlas@cpgmbh.de'
-      git config user.name 'Azure DevOps Pipeline'
+      git branch
+      git checkout main
+      git config user.email 'noreply@cpgmbh.de'
+      git config user.name 'C&P Atlas Azure DevOps Pipeline'
       git add *.ps1
       git add '**/*.ps1'
       git commit -m 'Updating powershell signing'
-      git push origin HEAD
+      git push
