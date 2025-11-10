@@ -14,6 +14,6 @@ steps:
   displayName: 'Hello World'
   
 - task: PowerShell@2
-  displayName: 'This is a test'
+  displayName: 'Signing powershell'
   inputs:
-    filePath: 'TestScript.ps1'
+    filePath: '.\Signing\Sign-CodeByCertificate.ps1'
