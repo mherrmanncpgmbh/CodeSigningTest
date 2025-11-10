@@ -23,17 +23,17 @@ steps:
       ls
 
 - task: PowerShell@2
-  displayName: 'Signing powershell'
+  displayName: 'Signing powershell files with C&P certificate'
   inputs:
     filePath: '.\Signing\Sign-CodeByCertificate.ps1'
 
 - task: PowerShell@2
-  displayName: 'Running signed powershell'
+  displayName: 'Running a sample signed powershell'
   inputs:
     filePath: '.\TestScript.ps1'
 
 - task: PowerShell@2
-  displayName: 'GIT commit powershell signing changes'
+  displayName: 'GIT: Commit powershell signing changes'
   inputs:
     targetType: 'inline'
     script: |
@@ -44,5 +44,5 @@ steps:
       git config user.name 'C&P Atlas Azure DevOps Pipeline'
       git add *.ps1
       git add '**/*.ps1'
-      git commit -m 'Updating powershell signing'
+      git commit -m 'Added code signing to powershell files'
       git push
