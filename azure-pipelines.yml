@@ -38,6 +38,7 @@ steps:
     script: |
       git config user.email 'atlas@cpgmbh.de'
       git config user.name 'Azure DevOps Pipeline'
+      git add *.ps1
       git add '**/*.ps1'
       git commit -m 'Updating powershell signing'
       git push
