@@ -6,9 +6,9 @@
 	Author: someone@cpgmbh.de
 #>
 
-$PfxPath = ".\cp_selfsigned_pfx.pfx" | Resolve-Path
+$PfxPath = ".\Signing\cp_selfsigned_pfx.pfx" | Resolve-Path
 $PfxPassword = "123"
-$PowershellToSign = "..\TestScript.ps1" | Resolve-Path
+$PowershellToSign = ".\TestScript.ps1" | Resolve-Path
 
 # Abort if path to pfx does not actually exist
 if(!(Test-Path $PfxPath)) {
