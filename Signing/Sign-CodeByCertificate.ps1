@@ -36,27 +36,6 @@ $Cert.Import($PfxPath, $PfxPassword, "Exportable,PersistKeySet")
 # Sign the script
 Set-AuthenticodeSignature -FilePath $PowershellToSign -Certificate $Cert
 
-<#
-# Search in certificate store for all certificates with attribute "CodeSigningCert"
-Write-Output "Searching certificate store for code signing certificates.."
-$Cert = Get-ChildItem -Path $CertStoreLocation -CodeSigningCert
-
-if($null -eq $Cert) {
-    Write-Error "No code signing certificate could be found in certificate store [$CertStoreLocation], please validate whether one exists."
-    Exit 1
-}
-else {
-    $Cert = $Cert[0]
-    Write-Output "Found a code signing certificate with subject [$($Cert.Subject)], issuer [$($Cert.Issuer)] and thumbprint [$($Cert.Thumbprint)]."
-}
-
-# Perform the signing
-Write-Output "Signing powershell file [$PowershellToSign] by certificate [$($Cert.Thumbprint)]."
-Set-AuthenticodeSignature -FilePath "$PowershellToSign" -Certificate $Cert | Out-Null
-# MHE: The timestamp-server-parameter works only for public certificates, trusted by CA. If C&P decides to use a public certificate, we could also add timestamping here:
-# Set-AuthenticodeSignature -FilePath "$PowershellToSign" -Certificate $Cert -TimestampServer "http://timestamp.acs.microsoft.com" | Out-Null
-#>
-
 # Verify that the file was signed and what is its status
 $VerificationResult = Get-AuthenticodeSignature -FilePath "$PowershellToSign"
 Write-Output "Powershell [$($VerificationResult.Path)] signing status: $($VerificationResult.Status)"
