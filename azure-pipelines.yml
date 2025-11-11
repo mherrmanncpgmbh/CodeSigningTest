@@ -4,7 +4,9 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- none # Don't trigger the pipeline automatically
+# This would run automatically, whenever a code change occurs in the "main" branch
+#- main
 
 pool:
   vmImage: windows-latest
