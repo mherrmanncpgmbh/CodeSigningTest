@@ -6,9 +6,12 @@
 	Author: someone@cpgmbh.de
 #>
 
+param (
+	[string]$PfxPassword # This is specified via a pipeline variable in Azure DevOps
+)
+
 $RootDirectory = ".\" | Resolve-Path
 $PfxPath = "$RootDirectory\Signing\cp_selfsigned_pfx.pfx"
-$PfxPassword = ${env:PFXPASSWORD} # This is specified via a pipeline variable in Azure DevOps
 
 # Abort if path to pfx does not actually exist
 if(!(Test-Path $PfxPath)) {
