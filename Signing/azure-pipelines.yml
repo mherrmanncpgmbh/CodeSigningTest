@@ -37,11 +37,13 @@ steps:
   displayName: 'Installing certificate from PFX file'
   inputs:
     filePath: '.\Signing\Install-Certificate.ps1'
+    arguments: '-PfxPassword "$(PfxPassword)"' # This is defined via a variable in Azure DevOps
 
 - task: PowerShell@2
   displayName: 'Signing powershell files with C&P certificate'
   inputs:
     filePath: '.\Signing\Sign-CodeByCertificate.ps1'
+    arguments: '-PfxPassword "$(PfxPassword)"' # This is defined via a variable in Azure DevOps
 
 - task: PowerShell@2
   displayName: 'Running a sample signed powershell'

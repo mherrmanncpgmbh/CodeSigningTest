@@ -19,7 +19,7 @@ Write-Output "Pass3 is: $PfxPassword"
 #
 
 # Some basic validation
-if($PfxPassword -eq "") {
+if(($null -eq $PfxPassword) -or ($PfxPassword -eq "")) {
 	Write-Error "No password was provided for importing the certificate!"
 	Exit 1
 }
