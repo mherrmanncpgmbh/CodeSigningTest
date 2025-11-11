@@ -36,7 +36,12 @@ foreach($Ps1 in $AllPs1s) {
 	}
 }
 
-Write-Output "A total of [$SignCounter] files have been signed."
+if($SignCounter -gt 0) {
+	Write-Output "A total of [$SignCounter] files have been signed."
+}
+else {
+	Write-Output "No files have been signed. This typically means that all files are already in a signed and valid state."
+}
 
 # SIG # Begin signature block
 # MIIJagYJKoZIhvcNAQcCoIIJWzCCCVcCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
