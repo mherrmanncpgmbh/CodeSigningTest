@@ -12,6 +12,12 @@ $PfxSubjectName = "cpgmbh.selfsigned"
 $PfxPassword = ${env:PFXPASSWORD} # This is specified via a pipeline variable in Azure DevOps
 $TargetCertStoreLocations = @("Cert:\LocalMachine\Root","Cert:\LocalMachine\TrustedPublisher")
 
+# DEBUG
+Write-Output "Pass1 is: $(${env:PFXPASSWORD})"
+Write-Output "Pass2 is: $($env:PFXPASSWORD)"
+Write-Output "Pass3 is: $PfxPassword"
+#
+
 # Some basic validation
 if($PfxPassword -eq "") {
 	Write-Error "No password was provided for importing the certificate!"
