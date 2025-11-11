@@ -1,11 +1,20 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+#
+# Azure DevOps Pipeline
+# https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops
+# 
+# Pipeline for automatic signing of all powershell based script files in the repository.
+# If a powershell file is not signed or the signing is expired, it will be code signed by a C&P certificate and recommitted to the repository.
+# 
+# Author:
+# someone@cpgmbh.de
+#
 
+# Don't trigger the pipeline automatically
 trigger:
-- none # Don't trigger the pipeline automatically
+- none 
+
 # This would run automatically, whenever a code change occurs in the "main" branch
+#trigger:
 #- main
 
 pool:
@@ -25,6 +34,11 @@ steps:
       ls
 
 - task: PowerShell@2
+  displayName: 'Installing certificate from PFX file'
+  inputs:
+    filePath: '.\Signing\Sign-CodeByCertificate.ps1'
+
+- task: PowerShell@2
   displayName: 'Signing powershell files with C&P certificate'
   inputs:
     filePath: '.\Signing\Sign-CodeByCertificate.ps1'
@@ -35,7 +49,7 @@ steps:
     filePath: '.\TestScript.ps1'
 
 - task: PowerShell@2
-  displayName: 'GIT: Commit powershell signing changes'
+  displayName: 'GIT: Committing all powershell signing changes'
   inputs:
     targetType: 'inline'
     script: |
