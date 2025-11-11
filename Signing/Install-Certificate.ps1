@@ -9,7 +9,7 @@
 $RootDirectory = ".\" | Resolve-Path
 $PfxPath = "$RootDirectory\Signing\cp_selfsigned_pfx.pfx"
 $PfxSubjectName = "cpgmbh.selfsigned"
-$PfxPassword = "123"
+$PfxPassword = ${env:PFXPASSWORD} # This is specified via a pipeline variable in Azure DevOps
 $TargetCertStoreLocations = @("Cert:\LocalMachine\Root","Cert:\LocalMachine\TrustedPublisher")
 
 # Some basic validation

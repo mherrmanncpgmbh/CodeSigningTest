@@ -8,7 +8,7 @@
 
 $RootDirectory = ".\" | Resolve-Path
 $PfxPath = "$RootDirectory\Signing\cp_selfsigned_pfx.pfx"
-$PfxPassword = "123"
+$PfxPassword = ${env:PFXPASSWORD} # This is specified via a pipeline variable in Azure DevOps
 
 # Abort if path to pfx does not actually exist
 if(!(Test-Path $PfxPath)) {

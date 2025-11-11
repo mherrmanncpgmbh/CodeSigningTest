@@ -60,5 +60,5 @@ steps:
       git config user.name 'C&P Atlas Azure DevOps Pipeline'
       git add *.ps1
       git add '**/*.ps1'
-      git commit -m 'Added code signing to powershell files'
+      git commit -m 'Added or updated code signing of powershell files'
       git push
