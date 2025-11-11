@@ -6,14 +6,14 @@
 	Author: someone@cpgmbh.de
 #>
 
+param (
+	[string]$PfxPassword1 # This is specified via a pipeline variable in Azure DevOps
+)
+
 $RootDirectory = ".\" | Resolve-Path
 $PfxPath = "$RootDirectory\Signing\cp_selfsigned_pfx.pfx"
 $PfxSubjectName = "cpgmbh.selfsigned"
 $TargetCertStoreLocations = @("Cert:\LocalMachine\Root","Cert:\LocalMachine\TrustedPublisher")
-
-param(
-	[string]$PfxPassword1 # This is specified via a pipeline variable in Azure DevOps
-)
 
 # DEBUG
 Write-Output "Pass1 is: $PfxPassword1"
