@@ -36,7 +36,7 @@ steps:
 - task: PowerShell@2
   displayName: 'Installing certificate from PFX file'
   inputs:
-    filePath: '.\Signing\Sign-CodeByCertificate.ps1'
+    filePath: '.\Signing\Install-Certificate.ps1'
 
 - task: PowerShell@2
   displayName: 'Signing powershell files with C&P certificate'
