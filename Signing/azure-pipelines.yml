@@ -29,6 +29,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      ${env:PFXPASSWORD}
       ls
       cd ".\Signing\"
       ls
