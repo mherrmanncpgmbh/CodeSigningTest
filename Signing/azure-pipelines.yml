@@ -22,7 +22,7 @@ pool:
 
 steps:
 - checkout: self
-  persistCredentials: true  # Required to reuse Git credentials
+  persistCredentials: true  # Required to reuse GIT credentials
   
 - task: PowerShell@2
   displayName: 'Checking directory status'
